@@ -1,0 +1,8 @@
+1. Login Admin
+2. Admin bisa menginputkan data Pasien
+3. Admin bisa memilihkan kamar pasien yang tersedia
+4. kamar yang telah dipesan tidak dapat dipesan kembali
+5. Jika pasien telah keluar dari kamar (Rawat Jalan/ pulang ke rumah) maka kamar bisa dipesan oleh pasien lain
+6. Admin tidak bisa menginputkan pasien (Rawat jalan/ pulang untuk kedua kalinya atau lebih).
+7. Admin bisa melihat data pasien
+8. Admin bisa melihat daftar kamar yang tersedia
