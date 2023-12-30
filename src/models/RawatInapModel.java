@@ -1,5 +1,9 @@
 package models;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import entity.AdminEntity;
@@ -7,11 +11,14 @@ import entity.KamarEntity;
 import entity.PasienEntity;
 import entity.RawatInapEntity;
 import utils.DateString;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 
 public class RawatInapModel {
     private static ArrayList<KamarEntity> arrayKamar = new ArrayList<>();
     private static ArrayList<AdminEntity> arrayAdmin = new ArrayList<>();
     private static ArrayList<RawatInapEntity> arrayRawat = new ArrayList<>();
+    private static final String fileKamar = "Kamar.txt";
 
     public static ArrayList<KamarEntity> allArrayKamar(){
         return arrayKamar;
@@ -23,11 +30,6 @@ public class RawatInapModel {
 
     public static ArrayList<RawatInapEntity> allArrayRawat(){
         return arrayRawat;
-    }
-
-    public static void dataKamar(){
-        arrayKamar.add(new KamarEntity("K101", "VIIP", 1500000, true));
-        arrayKamar.add(new KamarEntity("K102", "VIP", 1000000, true));
     }
 
     public static void dataAdmin(){
@@ -74,5 +76,25 @@ public class RawatInapModel {
             }
         }
         return false;
+    }
+
+    @SuppressWarnings("unchecked")
+    public static void loadFileKamar(){
+        File file = new File(fileKamar);
+        if(file.exists()){
+            try(ObjectInputStream inputStream = new java.io.ObjectInputStream(new FileInputStream(fileKamar))){
+                arrayKamar = (ArrayList<KamarEntity>) inputStream.readObject();
+            } catch (IOException | ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public static void saveFile(){
+        try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(fileKamar))) {
+            outputStream.writeObject(arrayKamar);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -1,6 +1,8 @@
 package entity;
 
-public class KamarEntity {
+import java.io.Serializable;
+
+public class KamarEntity implements Serializable{
     private String kodeKamar;
     private String jenisKamar;
     private int hargaPermalam;
